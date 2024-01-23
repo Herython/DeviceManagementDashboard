@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 控制面板</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- <h1>API 控制面板</h1> -->
+    <nav>
+        <ul>
+            <li><a href="#reboot-section">重启</a></li>
+            <li><a href="#update-section">升级</a></li>
+            <li><a href="#changeServer-section">修改服务器地址</a></li>
+        </ul>
+    </nav>
+
+    <div id="reboot-section" class="tab-content">
+        <h2>重启</h2>
+        <form id="rebootForm">
+            <input type="text" id="deviceNumsReboot" placeholder="设备号" required>
+            <input type="checkbox" id="rightNowReboot"> 立即重启<br>
+            <button type="submit">提交</button>
+        </form>
+        <p id="rebootResult"></p>
+    </div>
+
+    <div id="update-section" class="tab-content">
+        <h2>升级</h2>
+        <form id="updateForm">
+            <input type="text" id="deviceNumsUpdate" placeholder="设备号" required><br>
+
+            <select id="deviceTypeUpdate" required>
+                <option value="">请选择设备类型...</option>
+                <option value="1">1直流</option>
+                <option value="2">2交流</option>
+            </select>
+            
+            <input type="number" id="devicePowerUpdate" placeholder="桩功率" min="0" step="1" required><br>
+            <input type="text" id="hostUpdate" placeholder="服务器地址" required><br>
+            <input type="number" id="portUpdate" placeholder="服务器端口" min="0" step="1" required><br>
+            <input type="text" id="userNameUpdate" placeholder="用户名" required><br>
+            <input type="password" id="passwordUpdate" placeholder="密码" required><br>
+            <input type="text" id="filePatternUpdate" placeholder="文件路径" required><br>
+            <input type="number" id="timeoutUpdate" placeholder="超时时间" min="0" step="1" required><br>
+            <input type="checkbox" id="rightNowUpdate"> 是否立刻升级<br>
+            <button type="submit">提交</button>
+        </form>
+        <p id="updateResult"></p>
+    </div>
+
+    <div id="changeServer-section" class="tab-content">
+        <h2>修改服务器地址</h2>
+        <form id="changeServerForm">
+            <input type="text" id="deviceNumsChangeServer" placeholder="设备号" required>
+            <input type="text" id="hostChangeServer" placeholder="服务器地址" required>
+            <input type="number" id="portChangeServer" placeholder="端口" min="0" step="1" required>
+            <button type="submit">提交</button>
+        </form>
+        <p id="changeServerResult"></p>
+    </div>
+
+</body>
+</html>
