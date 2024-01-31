@@ -13,7 +13,10 @@
         <ul>
             <li><a href="#reboot-section">重启</a></li>
             <li><a href="#update-section">升级</a></li>
-            <li><a href="#changeServer-section">修改服务器地址</a></li>
+            <li><a href="#updateNew-section">升级new</a></li>
+            <li><a href="#changeServer-section">修改服务器地址</a></li> 
+            <li><a href="#analyseMessege-section">解析报文</a></li>
+            <li><a href="#deviceState-section">查看设备状态</a></li>
         </ul>
     </nav>
 
@@ -51,6 +54,32 @@
         <p id="updateResult"></p>
     </div>
 
+    <div id="updateNew-section" class="tab-content">
+        <h2>升级new</h2>
+        <form id="updateNewForm">
+            <input type="text" id="deviceNumsUpdateNew" placeholder="设备号" required><br>
+
+            <select id="deviceTypeUpdateNew" required>
+                <option value="">请选择设备类型...</option>
+                <option value="1">1直流</option>
+                <option value="2">2交流</option>
+            </select>
+            
+            <input type="number" id="devicePowerUpdateNew" placeholder="桩功率" min="0" step="1" required><br>
+            <input type="text" id="hostUpdateNew" placeholder="服务器地址" required><br>
+            <input type="number" id="portUpdateNew" placeholder="服务器端口" min="0" step="1" required><br>
+            <input type="text" id="userNameUpdateNew" placeholder="用户名" required><br>
+            <input type="password" id="passwordUpdateNew" placeholder="密码" required><br>
+            <input type="text" id="filePatternUpdateNew" placeholder="文件路径" required><br>
+            <input type="number" id="timeoutUpdateNew" placeholder="超时时间" min="0" step="1" required><br>
+            <input type="file" id="fileUpdateNew"><br>
+            <input type="checkbox" id="rightNowUpdateNew"> 是否立刻升级<br>
+            <button type="submit">提交</button>
+        </form>
+        <p id="updateNewResult"></p>
+    </div>
+
+
     <div id="changeServer-section" class="tab-content">
         <h2>修改服务器地址</h2>
         <form id="changeServerForm">
@@ -60,6 +89,25 @@
             <button type="submit">提交</button>
         </form>
         <p id="changeServerResult"></p>
+    </div>
+
+
+    <div id="analyseMessege-section" class="tab-content">
+        <h2>解析报文</h2>
+        <form id="analyseMessageForm">
+            <input type="text" id="analyseMessageInput" placeholder="请输入需要解析的报文" required><br>
+            <button type="submit">提交</button>
+        </form>
+        <p id="analyseMessageResult"></p>
+    </div>
+
+    <div id="deviceState-section" class="tab-content">
+        <h2>查看设备状态</h2>
+        <form id="deviceStateForm">
+            <input type="text" id="deviceNumStateQ" placeholder="请输入设备号" required><br>
+            <button type="submit">查询</button>
+        </form>
+        <p id="deviceStateResult"></p>
     </div>
 
 </body>
