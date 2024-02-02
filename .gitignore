@@ -1,0 +1,3 @@
+*.zip
+/react-frame
+/dashboard-react/node_modules

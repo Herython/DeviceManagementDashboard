@@ -1,0 +1,516 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "个人测试",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "tags": [],
+  "paths": {
+    "/reboot": {
+      "post": {
+        "summary": "重启",
+        "x-apifox-folder": "",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deviceNums": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "设备号"
+                    }
+                  },
+                  "rightNow": {
+                    "description": "是否立刻重启",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "deviceNums",
+                  "rightNow"
+                ],
+                "x-apifox-orders": [
+                  "deviceNums",
+                  "rightNow"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": "{\r\n    \"deviceNums\": [\"1\"],\r\n    \"rightNow\": true //是否立刻重启\r\n}"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "200成功,500失败"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "提示消息"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "失败的桩号"
+                      }
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "code",
+                    "msg",
+                    "data"
+                  ],
+                  "required": [
+                    "code",
+                    "msg",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3588590/apis/api-143692219-run",
+        "security": []
+      }
+    },
+    "/update": {
+      "post": {
+        "summary": "升级",
+        "x-apifox-folder": "",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deviceNums": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "设备号"
+                    }
+                  },
+                  "deviceType": {
+                    "description": "1直流，2交流",
+                    "type": "integer"
+                  },
+                  "devicePower": {
+                    "description": "桩功率",
+                    "type": "integer"
+                  },
+                  "host": {
+                    "description": "服务器地址",
+                    "type": "string"
+                  },
+                  "port": {
+                    "description": "服务器端口",
+                    "type": "integer"
+                  },
+                  "userName": {
+                    "description": "用户名",
+                    "type": "string"
+                  },
+                  "password": {
+                    "description": "密码",
+                    "type": "string"
+                  },
+                  "filePattern": {
+                    "description": "文件路径",
+                    "type": "string"
+                  },
+                  "timeout": {
+                    "description": "超时时间",
+                    "type": "integer"
+                  },
+                  "rightNow": {
+                    "description": "是否立刻升级",
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "deviceNums",
+                  "deviceType",
+                  "devicePower",
+                  "host",
+                  "port",
+                  "userName",
+                  "password",
+                  "filePattern",
+                  "timeout",
+                  "rightNow"
+                ],
+                "x-apifox-orders": [
+                  "deviceNums",
+                  "deviceType",
+                  "devicePower",
+                  "host",
+                  "port",
+                  "userName",
+                  "password",
+                  "filePattern",
+                  "timeout",
+                  "rightNow"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": "{\r\n    \"deviceNums\": [\"设备号\"],\r\n    \"deviceType\": 2, //1直流，2交流\r\n    \"devicePower\": 7, //桩功率\r\n    \"host\": \"ftp://127.0.0.1\", //服务器地址\r\n    \"port\": 21, //服务器端口\r\n    \"userName\": \"user\", //用户名\r\n    \"password\": \"pass\", //密码\r\n    \"filePattern\": \"/a.bin\", //文件路径\r\n    \"timeout\": 30, //超时时间\r\n    \"rightNow\": true //是否立刻升级\r\n}"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "200成功,500失败"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "提示消息"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "失败的桩号"
+                      }
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "code",
+                    "msg",
+                    "data"
+                  ],
+                  "required": [
+                    "code",
+                    "msg",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3588590/apis/api-143693620-run",
+        "security": []
+      }
+    },
+    "/changeServer": {
+      "post": {
+        "summary": "修改服务器地址",
+        "x-apifox-folder": "",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deviceNums": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "设备号"
+                    }
+                  },
+                  "host": {
+                    "description": "服务器地址",
+                    "type": "string"
+                  },
+                  "port": {
+                    "description": "服务器端口",
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "deviceNums",
+                  "host",
+                  "port"
+                ],
+                "x-apifox-orders": [
+                  "deviceNums",
+                  "host",
+                  "port"
+                ],
+                "x-apifox-ignore-properties": []
+              },
+              "example": "{\r\n    \"deviceNums\": [\"设备号\"],\r\n    \"host\": \"127.0.0.1\", //服务器地址\r\n    \"port\": 18000 //服务器端口\r\n}"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "description": "200成功,500失败"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "提示消息"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "失败的桩号"
+                      }
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "code",
+                    "msg",
+                    "data"
+                  ],
+                  "required": [
+                    "code",
+                    "msg",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3588590/apis/api-143699199-run",
+        "security": []
+      }
+    },
+    "/updateNew": {
+      "post": {
+        "summary": "升级 new",
+        "x-apifox-folder": "",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "deviceNums": {
+                    "type": "array",
+                    "example": [
+                      "设备号"
+                    ]
+                  },
+                  "deviceType": {
+                    "type": "string",
+                    "example": "2"
+                  },
+                  "devicePower": {
+                    "type": "string",
+                    "example": "7"
+                  },
+                  "host": {
+                    "type": "string",
+                    "example": "127.0.0.1"
+                  },
+                  "port": {
+                    "type": "string",
+                    "example": "21"
+                  },
+                  "userName": {
+                    "type": "string",
+                    "example": "user"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "pass"
+                  },
+                  "filePattern": {
+                    "type": "string",
+                    "example": "a.bin"
+                  },
+                  "timeout": {
+                    "type": "string",
+                    "example": "30"
+                  },
+                  "rightNow": {
+                    "type": "string",
+                    "example": "true"
+                  },
+                  "file": {
+                    "type": "string",
+                    "description": "更新文件",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "description": "200成功,500失败"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "description": "提示消息"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "description": "失败的桩号"
+                      }
+                    }
+                  },
+                  "x-apifox-orders": [
+                    "code",
+                    "msg",
+                    "data"
+                  ],
+                  "required": [
+                    "code",
+                    "msg",
+                    "data"
+                  ],
+                  "x-apifox-ignore-properties": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3588590/apis/api-145121348-run",
+        "security": []
+      }
+    },
+    "/analyseMessage": {
+      "post": {
+        "summary": "解析报文",
+        "x-apifox-folder": "",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {},
+                "x-apifox-ignore-properties": [],
+                "x-apifox-orders": []
+              },
+              "example": "68270000000136011150435030343409287f01010f76312e302e310000010101010101010101010104f442"
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3588590/apis/api-145664004-run",
+        "security": []
+      }
+    },
+    "/deviceState": {
+      "get": {
+        "summary": "查看设备状态",
+        "x-apifox-folder": "",
+        "x-apifox-status": "developing",
+        "deprecated": false,
+        "description": "",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "deviceNum",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "example": "36011150435030343409287F",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {},
+                  "x-apifox-ignore-properties": [],
+                  "x-apifox-orders": []
+                }
+              }
+            }
+          }
+        },
+        "x-run-in-apifox": "https://apifox.com/web/project/3588590/apis/api-145664533-run",
+        "security": []
+      }
+    }
+  },
+  "components": {
+    "schemas": {},
+    "securitySchemes": {}
+  },
+  "servers": []
+}
