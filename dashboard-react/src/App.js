@@ -1,5 +1,5 @@
 // src/App.js
-import React from 'react';
+import React, { useState } from 'react';
 import Navigation from './components/Navigation';
 import RebootSection from './components/RebootSection';
 import UpdateSection from './components/UpdateSection';
@@ -10,15 +10,31 @@ import DeviceStateSection from './components/DeviceStateSection';
 import './App.css'; 
 
 function App() {
+  const [activeSection, setActiveSection] = useState('');
+
+  const renderSection = () => {
+    switch (activeSection) {
+      case 'RebootSection':
+        return <RebootSection />;
+      case 'UpdateSection':
+        return <UpdateSection />;
+      case 'UpdateNewSection':
+        return <UpdateNewSection />;
+      case 'ChangeServerSection':
+        return <ChangeServerSection />;
+      case 'AnalyseMessageSection':
+        return <AnalyseMessageSection />;
+      case 'DeviceStateSection':
+        return <DeviceStateSection />;
+      default:
+        return <div>请选择一个选项</div>;
+    }
+  };
+
   return (
     <div>
-      <Navigation />
-      <RebootSection />
-      <UpdateSection />
-      <UpdateNewSection />
-      <ChangeServerSection />
-      <AnalyseMessageSection />
-      <DeviceStateSection />
+      <Navigation setActiveSection={setActiveSection} />
+      {renderSection()}
     </div>
   );
 }

@@ -3,23 +3,26 @@ import React, { useState } from 'react';
 
 function AnalyseMessageSection() {
     const [message, setMessage] = useState('');
+    const [result, setResult] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('/analyseMessage', {
+        fetch('http://192.168.8.120:17000/analyseMessage', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ message }),
+            body: message,
         })
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            // 可以在这里更新UI，显示解析结果
+            // 显示结果
+            setResult(JSON.stringify(data, null, 2));
         })
         .catch((error) => {
             console.error('Error:', error);
+            setResult(`Error: ${error.message}`); 
         });
     };
 
@@ -37,6 +40,9 @@ function AnalyseMessageSection() {
                 /><br />
                 <button type="submit">提交</button>
             </form>
+            <div id="analyseMessageResult">
+                <pre className='result-pre'>{result}</pre> 
+            </div>
         </div>
     );
 }

@@ -13,6 +13,7 @@ function UpdateNewSection() {
   const [timeout, setTimeout] = useState('');
   const [file, setFile] = useState(null);
   const [rightNow, setRightNow] = useState(false);
+  const [result, setResult] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,8 +29,9 @@ function UpdateNewSection() {
     formData.append('timeout', timeout);
     formData.append('rightNow', rightNow);
     formData.append('file', file);
+    if (file) formData.append('file', file);
 
-    fetch('/updateNew', {
+    fetch('http://192.168.8.120:17000/updateNew', {
       method: 'POST',
       body: formData, // 使用formData作为请求体
     })
@@ -41,12 +43,14 @@ function UpdateNewSection() {
     })
     .then(data => {
       console.log('Success:', data);
-      // 处理成功响应，例如显示成功消息或更新状态
-      // 可以在这里更新UI以显示操作结果
+      // 处理成功响应
+      // 显示结果
+      setResult(JSON.stringify(data, null, 2));
     })
     .catch((error) => {
       console.error('Error:', error);
-      // 处理错误，例如显示错误消息
+      // 处理错误
+      setResult(`Error: ${error.message}`);
     });
   };
 
@@ -149,6 +153,7 @@ function UpdateNewSection() {
         /> 是否立刻升级<br />
         <button type="submit">提交</button>
       </form>
+      <div className="result-pre">{result}</div>
     </div>
   );
 }

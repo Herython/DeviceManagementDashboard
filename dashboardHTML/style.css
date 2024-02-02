@@ -66,11 +66,11 @@ nav ul li a {
     font-weight: bold;
 }
 
-/* .tab-content {
+.tab-content {
     display: none;
 } */
 
 
-/* .tab-content.active {
+.tab-content.active {
     display: block;
-} */
+}

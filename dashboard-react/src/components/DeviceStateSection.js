@@ -3,17 +3,26 @@ import React, { useState } from 'react';
 
 function DeviceStateSection() {
     const [deviceNum, setDeviceNum] = useState('');
+    const [result, setResult] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`/deviceState?deviceNum=${encodeURIComponent(deviceNum)}`)
-        .then(response => response.json())
+        fetch(`http://192.168.8.120:17000/deviceState?deviceNum=${encodeURIComponent(deviceNum)}`)
+        // .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             console.log('Device State:', data);
-            // 可以在这里更新UI，显示设备状态
+            // 显示结果
+            setResult(JSON.stringify(data, null, 2));
         })
         .catch((error) => {
             console.error('Error:', error);
+            setResult(`Error: ${error.message}`);
         });
     };
 
@@ -31,6 +40,7 @@ function DeviceStateSection() {
                 /><br />
                 <button type="submit">查询</button>
             </form>
+            <div className="result-pre">{result}</div>
         </div>
     );
 }

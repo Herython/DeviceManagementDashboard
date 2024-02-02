@@ -4,26 +4,35 @@ import React, { useState } from 'react';
 function RebootSection() {
   const [deviceNums, setDeviceNums] = useState('');
   const [rightNow, setRightNow] = useState(false);
+  const [result, setResult] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('/reboot', {
+    fetch('http://192.168.8.120:17000/reboot', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        deviceNums: deviceNums.split(/[,，/]+/).map(num => num.trim()), // Assuming deviceNums is a comma-separated string
+        deviceNums: deviceNums.split(/[,，/]+/).map(num => num.trim()), //用于分割输入用中英文逗号斜杠均可完成分割
         rightNow
       }),
     })
-    .then(response => response.json())
+    // .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
     .then(data => {
       console.log('Success:', data);
-      // 可以在这里更新UI以显示操作结果
+      // 显示结果
+      setResult(JSON.stringify(data)); // 使用JSON.stringify来格式化结果对象，便于显示
     })
     .catch((error) => {
       console.error('Error:', error);
+      setResult(`Error: ${error.message}`); // 显示错误信息
     });
   };
 
@@ -39,14 +48,17 @@ function RebootSection() {
           onChange={(e) => setDeviceNums(e.target.value)}
           required
         />
-        <input
-          type="checkbox"
-          id="rightNowReboot"
-          checked={rightNow}
-          onChange={(e) => setRightNow(e.target.checked)}
-        /> 立即重启<br />
+        <label htmlFor="rightNowReboot" style={{ display: 'inline-block', margin: '10px 0' }}>
+          <input
+            type="checkbox"
+            id="rightNowReboot"
+            checked={rightNow}
+            onChange={(e) => setRightNow(e.target.checked)}
+          /> 立即重启
+        </label><br />
         <button type="submit">提交</button>
       </form>
+      <div id="rebootResult"><pre className='result-pre'>{result}</pre></div>
     </div>
   );
 }

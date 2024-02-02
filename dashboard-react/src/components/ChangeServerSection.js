@@ -5,27 +5,36 @@ function ChangeServerSection() {
   const [deviceNums, setDeviceNums] = useState('');
   const [host, setHost] = useState('');
   const [port, setPort] = useState('');
+  const [result, setResult] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('/changeServer', {
+    fetch('http://192.168.8.120:17000/changeServer', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        deviceNums: deviceNums.split(/[,，/]+/).map(num => num.trim()), // Assuming deviceNums is a comma-separated string
+        deviceNums: deviceNums.split(/[,，/]+/).map(num => num.trim()), 
         host,
         port: parseInt(port, 10)
       }),
     })
-    .then(response => response.json())
+    // .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
     .then(data => {
       console.log('Success:', data);
-      // 可以在这里更新UI以显示操作结果
+      // 显示结果
+      setResult(JSON.stringify(data, null, 2));
     })
     .catch((error) => {
       console.error('Error:', error);
+      setResult(`Error: ${error.message}`);
     });
   };
 
@@ -59,6 +68,7 @@ function ChangeServerSection() {
         />
         <button type="submit">提交</button>
       </form>
+      <div className="result-pre">{result}</div>
     </div>
   );
 }

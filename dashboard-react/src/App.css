@@ -5,9 +5,10 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     text-align: center;
+    font-size: 14px;
   }
   
-  h2 {
+  h1, h2 {
     color: #333;
   }
   
@@ -25,6 +26,8 @@ body {
   }
   
   button {
+    width: 100%;
+    padding: 10px;
     background-color: #5cb85c;
     color: white;
     border: none;
@@ -35,16 +38,24 @@ body {
     background-color: #4cae4c;
   }
   
+  nav {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+  }
+
   nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     background-color: #333;
+    text-align: center;
     overflow: hidden;
   }
   
   nav ul li {
     display: inline;
+    margin: 0 10px;
   }
   
   nav ul li a {
@@ -59,14 +70,28 @@ body {
     background-color: #111;
   }
   
-  .tab-content {
+  /* .tab-content {
     display: none;
     padding: 20px;
     border: 1px solid #ddd;
     border-top: none;
-  }
+  } */
   
   .tab-content.active {
     display: block;
+  }
+
+  /*
+  label {
+    display: inline-block; 
+    margin: 10px 0; 
+  }
+  */
+
+  .result-pre {
+    white-space: pre-wrap; /* 允许自动换行，同时保留格式 */
+    word-wrap: break-word; /* 长单词或URL等可以断行 */
+    overflow-wrap: break-word; 
+    margin: 10px 0; 
   }
   
